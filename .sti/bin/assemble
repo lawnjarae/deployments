@@ -4,4 +4,4 @@
 curl -o $JBOSS_HOME/standalone/deployments/ROOT.war -O ${WAR_FILE_URL}
 
 # Call default assemble script
-/usr/local/sti/assemble
+#/usr/local/sti/assemble
