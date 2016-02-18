@@ -1,3 +1,3 @@
 FROM jboss-eap64-openshift
 COPY deployments/ROOT.war $JBOSS_HOME/standalone/deployments/ROOT.war
-COPY
+COPY rhn_ose_license.txt $JBOSS_HOME/rhn_ose_license.txt
