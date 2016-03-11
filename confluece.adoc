@@ -16,7 +16,7 @@ Pod related issues
 Router/Registry Not deploying to correct node
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Ensure that you created the registry with the --selector flag.
+Ensure that you created the registry with the *--selector* flag.
 
 [width="100%",cols="100%",]
 |=======================================================================
