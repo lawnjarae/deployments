@@ -37,7 +37,6 @@ and search for **nodeSelector**. If this value is not defined, it is
 easier to delete the entire registry and re-create it with the
 *--selector* flag seen above.
 
- 
 
 Registry not showing contents of NFS mount (persistent volume)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -113,7 +112,6 @@ docker-storage-claim   <none>    Bound     docker-registry-storage   50Gi       
 
 |=======================================================================
 
- 
 
 Solution
 ++++++++
@@ -150,7 +148,6 @@ oc volume deploymentconfigs/docker-registry --add --name=registry-storage -t pvc
 
 |=======================================================================
 
- 
 
 Hosts Can No Longer Resolve Each During Anisble Install
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -171,7 +168,6 @@ system:admin user should have these
 privileges. https://docs.openshift.com/enterprise/3.1/install_config/install/docker_registry.html[OSEv3.1
 Deploying a Docker Registry]
 
- 
 
 Application Pod fails to deploy
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -188,7 +184,6 @@ rdnc querylog
 
 |============
 
- 
 
 Then tail */var/log/messages* if you see entries like this:
 
@@ -202,12 +197,10 @@ github.com.jarae.example.com
 
 |===========================================================
 
- 
 
 The likely cause is that your DNS wild card is redirecting this causing
 the build to fail
 
- 
 
 Issues with Nodes
 ~~~~~~~~~~~~~~~~~
@@ -252,11 +245,9 @@ master02.ose.example.com   kubernetes.io/hostname=master02.ose.example.com   Not
 
 |=======================================================================
 
- 
 
 Start by investigating the *atomic-openshift-node* service:
 
- 
 
 [width="100%",cols="100%",]
 |=======================================================================
@@ -281,7 +272,6 @@ Feb 25 07:50:00 master02 systemd[1]: atomic-openshift-node.service holdoff time 
 
 |=======================================================================
 
- 
 
 In some cases the service will come back on its own because the service
 will reschedule itself
@@ -352,7 +342,6 @@ member a9e031ea9ce2a521 is unhealthy: got unhealthy result from https://192.168.
 
 |=======================================================================
 
- 
 
 In the event that the health check fails check the status of *etcd* you
 could see one or a combination of the following:
@@ -412,7 +401,6 @@ Feb 25 11:42:25 master00 etcd[1097]: the connection to peer a9e031ea9ce2a521 is 
 
 |=======================================================================
 
- 
 
 Solution
 ++++++++
@@ -475,7 +463,6 @@ Mar 08 09:29:22 app00.ose.example.com systemd[1]: Stopped Atomic OpenShift Node.
 
 |=======================================================================
 
- 
 
 */var/log/messages* has the following messages:
 
@@ -488,7 +475,6 @@ Unable to connect to the server: x509: certificate signed by unknown authority
 
 |=======================================================================
 
- 
 
 Solution
 ++++++++
@@ -496,7 +482,6 @@ Solution
 The problem is that the keys are most likely corrupt or missing from
 **/etc/origin/node**. Copy the files from a host that did succeed.
 
- 
 
 Registry issues
 ~~~~~~~~~~~~~~~
@@ -534,7 +519,6 @@ router            172.50.49.239    <none>        80/TCP                  router=
 
 |=======================================================================
 
- 
 
 Solution
 ++++++++
@@ -556,7 +540,6 @@ systemctl restart atomic-openshift-master-api
 
 |============================================
 
- 
 
 OpenShift build error: failed to push image while using NFS persistent storage
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -572,7 +555,6 @@ Build error: Failed to push image. Response from registry is: Received unexpecte
 
 |=======================================================================
 
- 
 
 Check the host where the registry pod is supposed to be deployed:
 
@@ -596,7 +578,6 @@ Node:                infra01.ose.example.com/192.168.200.61
 
 |=======================================================================
 
- 
 
 Check to see if the mount point exists on the node (in this case
 **infra01**)
@@ -615,7 +596,6 @@ a|
 If the volume is mounted on the registry host, it is not a firewall, or
 nfs-server configuration issue.
 
- 
 
 Solution
 ++++++++
@@ -633,7 +613,6 @@ virt_use_nfs --> off
 
 |=======================================
 
- 
 
 Set this boolean to on across any node that will host pods which may
 require NFS access (such as databases, registries etc):
@@ -647,7 +626,6 @@ setsebool -P virt_use_nfs=true
 
 |=============================
 
- 
 
 ha-registry with NFS persistent storage failed to push images
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -675,7 +653,6 @@ Response from registry is: blob upload invalid
 
 |=============================================
 
- 
 
 Examining the logs of the registry show something similar to:
 
@@ -692,7 +669,6 @@ time="2016-03-10T09:00:56.671348073-05:00" level=error msg="response completed w
 
 |=======================================================================
 
- 
 
 Solution
 ++++++++
@@ -710,7 +686,6 @@ a|
 
 |==============================
 
- 
 
 *OR* add session affinity to the registry service:
 
@@ -725,7 +700,6 @@ oc get -o yaml service docker-registry \| \
 
 |======================================================
 
- 
 
 Restart the nfs server and restart the S2I build
 
@@ -768,7 +742,6 @@ Installation Fails...
 Job for atomic-openshift-master-api.service failed
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
- 
 
 [width="100%",cols="100%",]
 |=======================================================================
@@ -783,7 +756,6 @@ FATAL: all hosts have already failed -- aborting
 
 |=======================================================================
 
- 
 
 Solution:
 +++++++++
@@ -966,7 +938,7 @@ Mar  2 20:06:43 master00 docker: time="2016-03-02T20:06:43.879826788-06:00" leve
 
 |=======================================================================
 
- 
+
 Solution:
 +++++++++
 
