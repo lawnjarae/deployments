@@ -35,9 +35,10 @@ Solution
 To see if you've specified a selector, type *oc edit dc/docker-registry*
 and search for **nodeSelector**. If this value is not defined, it is
 easier to delete the entire registry and re-create it with the
-*--selector* flag seen above.
-
-
+*--selector* flag seen above. 
+ +
+ +
+ 
 Registry not showing contents of NFS mount (persistent volume)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -145,7 +146,6 @@ a|
 ------------------------------------------------------------------------------------------------------------------------------
 oc volume deploymentconfigs/docker-registry --add --name=registry-storage -t pvc --claim-name=docker-storage-claim --overwrite
 ------------------------------------------------------------------------------------------------------------------------------
-
 |=======================================================================
 
 
@@ -159,15 +159,17 @@ Solution
 ++++++++
 Use a DNS source external to the installer (at least during the installation
   phase) so that the installation does not fail due to host name lookup problems.
+  +
+  +
 
 Failure to deploy registry (permissions issues)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Deploying a registry requires a user with cluster-admin privileges. The
 system:admin user should have these
-privileges. https://docs.openshift.com/enterprise/3.1/install_config/install/docker_registry.html[OSEv3.1
-Deploying a Docker Registry]
-
+privileges. https://docs.openshift.com/enterprise/3.1/install_config/install/docker_registry.html[OSEv3.1 Deploying a Docker Registry]
+ +
+ +
 
 Application Pod fails to deploy
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -200,7 +202,8 @@ github.com.jarae.example.com
 
 The likely cause is that your DNS wild card is redirecting this causing
 the build to fail
-
+ +
+ +
 
 Issues with Nodes
 ~~~~~~~~~~~~~~~~~
@@ -324,6 +327,8 @@ master02.ose.example.com   kubernetes.io/hostname=master02.ose.example.com   Rea
 
 */var/log/messages* can sometimes shed some additional light if the problem is
 not resolved by restarting the *atomic-openshift-node* service
+ +
+ +
 
 Nodes report ready but ETCD health check fails
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -412,8 +417,8 @@ a|
 ----------------------
 systemctl restart etcd
 ----------------------
-
 |=====================
+
 
 Atomic-openshift-node service fails to start
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -479,7 +484,8 @@ Solution
 
 The problem is that the keys are most likely corrupt or missing from
 **/etc/origin/node**. Copy the files from a host that did succeed.
-
+ +
+ +
 
 Registry issues
 ~~~~~~~~~~~~~~~
@@ -535,7 +541,6 @@ a|
 ---------------------------------------------
 systemctl restart atomic-openshift-master-api
 ---------------------------------------------
-
 |============================================
 
 
@@ -700,7 +705,8 @@ oc get -o yaml service docker-registry \| \
 
 
 Restart the nfs server and restart the S2I build
-
+ +
+ +
 
 Quotas and Limitranges
 ~~~~~~~~~~~~~~~~~~~~~~
@@ -726,13 +732,16 @@ to go along with the defined quota. Click for more information on
 https://docs.openshift.com/enterprise/3.1/dev_guide/quota.html[quotas]
 and
 https://docs.openshift.com/enterprise/3.1/dev_guide/limits.html[limits].
-
+ +
+ +
+ 
 I have enough ram for another pod but it won't build
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Quotas can prevent build if *build machine* + *new pod* is greater than
 quota
-
+ +
+ +
 
 Installation Fails...
 ~~~~~~~~~~~~~~~~~~~~~
@@ -764,7 +773,8 @@ the error. Often though, this proves less than fruitful. A potential
 solution has been to log into the first master, start the service
 manually and restart the ansible installer from the beginning. This has
 been known to allow the installer to continue
-
+ +
+ +
 
 WebUI Related
 ~~~~~~~~~~~~~
@@ -792,7 +802,8 @@ a|
 |===============================================================
 
 Then restart the *atomic-openshift-master-api* service on each master
- 
+ +
+ +
 
 UI Redirecting to the URL of the masters instead of the LB
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -804,7 +815,8 @@ being set to the master's FQDN. ex. publicURL: master00.example.com.
 When the LB selects a master to pass the request to, OSE uses this value
 and substitutes the URL in the browser. These values being set incorrectly
 have implications when deploying your Docker registry.
-
+ +
+ +
 
 Intermittent Login issues
 ^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -888,7 +900,8 @@ Solution:
 
 Create the htpasswd on each master, or otherwise sync the correct
 htpasswd file
-
+ +
+ +
 
 Misc
 ~~~~
@@ -941,7 +954,9 @@ Solution:
 
 Chances are the key is empty. Remove the key and restart docker, the key
 will be regenerated
-
+ +
+ +
+ 
 oc new-app runs s2i instead of Docker build
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
