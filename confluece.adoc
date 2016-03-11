@@ -729,7 +729,7 @@ oc get -o yaml service docker-registry \| \
 
 Restart the nfs server and restart the S2I build
 
-  
+
 Quotas and Limitranges
 ~~~~~~~~~~~~~~~~~~~~~~
 
@@ -798,8 +798,6 @@ been known to allow the installer to continue
 
 WebUI Related
 ~~~~~~~~~~~~~
-
- 
 
 Web Console Public URL on a different Port
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
