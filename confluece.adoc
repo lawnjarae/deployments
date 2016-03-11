@@ -924,7 +924,6 @@ Mar 02 20:12:44 master00 systemd[1]: docker.service failed.
 
 Check */var/log/messages*
 
- 
 [width="100%",cols="100%",]
 |=======================================================================
 a|
