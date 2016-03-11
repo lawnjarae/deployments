@@ -322,10 +322,8 @@ master02.ose.example.com   kubernetes.io/hostname=master02.ose.example.com   Rea
 
 |=======================================================================
 
- 
 */var/log/messages* can sometimes shed some additional light if the problem is
 not resolved by restarting the *atomic-openshift-node* service
-
 
 Nodes report ready but ETCD health check fails
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
